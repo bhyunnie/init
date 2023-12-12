@@ -3,6 +3,7 @@ import client from "./client.js";
 import { ActivityType, Events } from "discord.js";
 import banner from "../../config/banner.js";
 import discord from "../index.js";
+import ENV from "../../config/env.js";
 
 const load = () => {
   client.once(Events.ClientReady, (readyClient) => {
@@ -14,6 +15,10 @@ const load = () => {
     client.user.setActivity("👀 딴 짓 하는지 감시 중", {
       type: ActivityType.Custom,
     });
+  });
+
+  client.on("guildMemberAdd", async (member) => {
+    const channelId = ENV.DISCORD_ONBOARD_CHANNEL_ID;
   });
 };
 

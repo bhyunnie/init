@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "discord.js";
 
 const data = new SlashCommandBuilder()
   .setName("입국")
-  .setDescription("오늘 공부한 시간을 알려드립니다.");
+  .setDescription("🛡️ 서버를 이용하기 위한 입국 심사 과정입니다.");
 
 const execute = async (interaction) => {
   await interaction.reply({
