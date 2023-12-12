@@ -1,4 +1,3 @@
-import banner from "./config/banner.js";
 import { Events } from "discord.js";
 import { makeDBConnection } from "./db/db.js";
 import client from "./discord/config/client.js";
@@ -6,8 +5,7 @@ import { clog, cerror } from "./util/log.js";
 import discord from "./discord/index.js";
 
 // TODO
-// cron , pm2 달아야할듯
-// aws 로 옮기자
+// cron
 // 등록할 커맨드 정리 필요
 // 연동할 것들 정리 github, wakatime 등등
 
@@ -26,7 +24,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
   const command = interaction.client.commands.get(interaction.commandName);
 
   if (!command) {
-    cerror(`No command matching ${interaction.commandName} was found.`);
+    cerror(`${interaction.commandName} 이런 명령어는 존재하지 않아요 😢`);
     return;
   }
 

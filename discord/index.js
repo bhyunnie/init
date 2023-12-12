@@ -1,3 +1,4 @@
+import { ActivityType } from "discord.js";
 import ENV from "../config/env.js";
 import client from "./config/client.js";
 import deployCommands from "./config/deployCommands.js";
