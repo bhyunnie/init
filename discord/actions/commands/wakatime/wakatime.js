@@ -13,6 +13,15 @@ const execute = async (interaction) => {
     `select * from api_sync where user_id = '${user.id}'`
   );
   const data = result.rows[0];
+
+  if (!data || !data.wakatime_api_key) {
+    await interaction.reply({
+      content: "⚠️ 아직 WAKATIME 을 연동하지 않으셨습니다",
+      ephemeral: true,
+    });
+    return;
+  }
+
   const today = getTimeYYYYMMDD();
   const wakatime_result = await axios.get(
     `https://wakatime.com/api/v1/users/current/summaries?start=${today}&end=${today}&api_key=${data.wakatime_api_key}&paywalled=true`
