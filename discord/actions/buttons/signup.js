@@ -3,9 +3,12 @@ import {
   ButtonBuilder,
   ButtonStyle,
   EmbedBuilder,
+  TextInputBuilder,
+  TextInputStyle,
 } from "discord.js";
 import client from "../../config/client.js";
 import Markdown from "../../util/markdown.js";
+import { db } from "../../../db/db.js";
 
 const signup = async (interaction) => {
   const user = interaction.user;
@@ -61,11 +64,21 @@ const signup = async (interaction) => {
   });
 };
 
-const confirmInformationCollection = (interaction) => {
-  interaction.reply({
-    content: "압도적 감사",
-    ephemeral: true,
-  });
+const confirmInformationCollection = async (interaction) => {
+  const user = interaction.user;
+  const userId = user.id;
+  const result = await db.query(
+    `select * from users where user_id = '${userId}'`
+  );
+  const data = result.rows[0];
+
+  if (data?.nickname) {
+    interaction.reply({
+      content: "이미 가입된 정보가 있습니다",
+      ephemeral: true,
+    });
+  } else {
+  }
 };
 
 const rejectInformationCollection = (interaction) => {
