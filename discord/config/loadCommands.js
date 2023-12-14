@@ -2,6 +2,7 @@ import { Collection } from "discord.js";
 import client from "./client.js";
 import fs from "fs";
 import path from "path";
+import { dirname } from "../../util/path.js";
 import { clog } from "../../util/log.js";
 import ENV from "../../config/env.js";
 
@@ -9,9 +10,10 @@ const commands = [];
 const showCommandList = ENV.DISCORD_COMMAND_LIST === "SHOW";
 
 const load = async () => {
-  const __dirname = path.resolve();
-  const foldersPath = path.join(__dirname, "discord/actions/commands");
-  const commandFolders = fs.readdirSync(foldersPath);
+  const foldersPath = path.join(dirname, "discord/actions/commands");
+  const commandFolders = fs
+    .readdirSync(foldersPath)
+    .filter((dir) => !dir.endsWith(".js"));
 
   client.commands = new Collection();
 
