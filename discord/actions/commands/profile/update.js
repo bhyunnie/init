@@ -21,7 +21,7 @@ const execute = async (interaction) => {
   });
   const embed = new EmbedBuilder()
     .setColor(0xe499fa)
-    .setTitle(`✨ ${data.nickname} 님의 프로필`)
+    .setTitle(`✨ ${data.display_name} 님의 프로필`)
     .setDescription("현재 정보입니다.")
     .setThumbnail(userProfileImageURL)
     .addFields(

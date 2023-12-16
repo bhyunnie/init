@@ -21,13 +21,18 @@ const execute = async (interaction) => {
   });
   const embed = new EmbedBuilder()
     .setColor(0xe499fa)
-    .setTitle(`✨ ${data.nickname} 님의 프로필`)
+    .setTitle(`✨ ${data.display_name} 님의 프로필`)
     .setDescription("현재 정보입니다.")
     .setThumbnail(userProfileImageURL)
     .addFields(
       { name: "🔖 닉네임", value: `<@${data.user_id}>` },
-      { name: "🗓️ 가입일", value: `${data.created_at}` },
-      { name: "🕑 Wakatime", value: `${data.wakatime_api_key}` },
+      { name: "🗓️ 가입일시", value: `${data.created_at}` },
+      {
+        name: "🕑 Wakatime",
+        value: `${
+          data.wakatime_api_key || "아직 wakatime 을 연동하지 않으셨어요. 😢"
+        }`,
+      },
       {
         name: "🐙 Github",
         value: `${data.github_id || "아직 아이디를 입력하지 않았어요. 😢"}`,

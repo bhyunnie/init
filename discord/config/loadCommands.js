@@ -13,7 +13,7 @@ const load = async () => {
   const foldersPath = path.join(dirname, "discord/actions/commands");
   const commandFolders = fs
     .readdirSync(foldersPath)
-    .filter((dir) => !dir.endsWith(".js"));
+    .filter((dir) => !(dir.endsWith(".js") || dir.endsWith(".DS_Store")));
 
   client.commands = new Collection();
 

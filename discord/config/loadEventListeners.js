@@ -13,6 +13,8 @@ import discord from "../index.js";
 import ENV from "../../config/env.js";
 import { interactionWithSlashCommand } from "../actions/commands/index.js";
 import { interactionWithButton } from "../actions/buttons/index.js";
+import { interactionWithSelectMenu } from "../actions/selectMenus/index.js";
+import { interactionWithModal } from "../actions/modals/index.js";
 
 // ================= 호출부 ==================
 
@@ -33,6 +35,14 @@ const interactionEvent = () => {
 
     if (interaction.isButton()) {
       return interactionWithButton(interaction);
+    }
+
+    if (interaction.isAnySelectMenu()) {
+      return interactionWithSelectMenu(interaction);
+    }
+
+    if (interaction.isModalSubmit()) {
+      return interactionWithModal(interaction);
     }
 
     interaction.reply({

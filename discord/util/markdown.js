@@ -34,6 +34,10 @@ const list = (contentArray) => {
     .join("\n");
 };
 
+const link = (content) => {
+  return `[${content}](${content})`;
+};
+
 export default {
   bold,
   italic,
@@ -43,4 +47,5 @@ export default {
   hideAndShow,
   quote,
   list,
+  link,
 };
