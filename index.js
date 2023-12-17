@@ -1,11 +1,7 @@
 import { makeDBConnection } from "./db/db.js";
 import { clog } from "./util/log.js";
 import discord from "./discord/index.js";
-
-// TODO
-// cron
-// 등록할 커맨드 정리 필요
-// 연동할 것들 정리 github, wakatime 등등
+import { setRankScheduler } from "./discord/scheduler/index.js";
 
 // SERVER SETTING
 clog("============ 서버 설정 로드 ============");
@@ -15,4 +11,7 @@ await makeDBConnection();
 
 // Discord Command Setting
 discord.attachEventListeners();
-discord.connectBot();
+await discord.connectBot();
+
+// scheduler
+setRankScheduler();

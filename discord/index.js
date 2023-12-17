@@ -1,4 +1,5 @@
 import ENV from "../config/env.js";
+import { sendWelcomeMessage } from "./actions/send/onboard.js";
 import client from "./config/client.js";
 import deployCommands from "./config/deployCommands.js";
 import loadCommands from "./config/loadCommands.js";
@@ -10,8 +11,8 @@ const setCommand = async () => {
   });
 };
 
-const connectBot = () => {
-  client.login(ENV.DISCORD_BOT_TOKEN);
+const connectBot = async () => {
+  await client.login(ENV.DISCORD_BOT_TOKEN);
 };
 
 const attachEventListeners = () => {
