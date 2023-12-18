@@ -13,7 +13,7 @@ import { db } from "../../db/db.js";
 import axios from "axios";
 
 const setRankScheduler = () => {
-  cron.schedule("* 30  * * * *", async () => {
+  cron.schedule("0 0,30  * * * *", async () => {
     try {
       const now = getTimeYYYYMMDDHHMMSS().split("-");
       const nowYYYYMMDD = getTimeYYYYMMDD();
