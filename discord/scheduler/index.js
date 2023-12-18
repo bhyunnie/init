@@ -13,7 +13,7 @@ import { db } from "../../db/db.js";
 import axios from "axios";
 
 const setRankScheduler = () => {
-  cron.schedule("* */30  * * * *", async () => {
+  cron.schedule("* 30  * * * *", async () => {
     try {
       const now = getTimeYYYYMMDDHHMMSS().split("-");
       const nowYYYYMMDD = getTimeYYYYMMDD();
@@ -46,7 +46,7 @@ const setRankScheduler = () => {
       });
 
       const sortedWakatimeData = filteredWakatimeData.sort((a, b) => {
-        return a.study_time - b.study_time;
+        return b.study_time - a.study_time;
       });
 
       const embed = new EmbedBuilder()
@@ -54,15 +54,20 @@ const setRankScheduler = () => {
         .setTitle(
           `🔥 ${now[0]}년${now[1]}월${now[2]}일 ${now[3]}시 ${now[4]}분 랭킹`
         )
-        .setDescription(
-          `📖 현재 1일 공부량 랭킹입니다.\n랭킹은 1~20위 까지 보여집니다.`
-        )
+        .setDescription(`📖 랭킹은 1~20위 까지 보여집니다.`)
         .addFields({
-          name: markdown.blank(),
+          name: `🕜 30분마다 갱신됩니다.`,
           value: markdown.blank(),
         });
 
       sortedWakatimeData.map((item, index) => {
+        if (item.study_time <= 60) {
+          embed.addFields({
+            name: `${index + 1} 위 ${item.display_name}`,
+            value: `😢 아직 학습 시간이 기록되지 않았어요.`,
+          });
+          return;
+        }
         const hhmm = secondToHHMM(item.study_time).split("-");
         embed.addFields({
           name:
