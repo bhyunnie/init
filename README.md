@@ -8,3 +8,9 @@
 - 가입자 정보에 따른 자동 권한 부여
 
 <img width="313" alt="image" src="https://github.com/bhyunnie/init/assets/129918927/d2eb0d44-fc9f-4fa6-b4ac-a9597fd0c595">
+
+### 사용 스택
+
+FE - x
+BE - Node.js , Discord.js , PM2
+DEVOPS - AWS
