@@ -12,5 +12,7 @@
 ### 사용 스택
 
 FE - x
+
 BE - Node.js , Discord.js , PM2
+
 DEVOPS - AWS
